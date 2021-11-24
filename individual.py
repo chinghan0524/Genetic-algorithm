@@ -18,7 +18,6 @@ class Individual:
         for i in range(maxClusterSize):
              genes.append(random.randint(1, maxClusterSize))
         #genes = [1, 1, 1, 2, 2, 3, 3, 3]
-        
         return genes
 
     def calc_fitness(self, graph):
@@ -65,13 +64,19 @@ class Individual:
         #print(f"interConnectivity: {interConnectivity}")
 
         turboMQ = 0
-        for (cluster_i, cluster_j) in ((cluster_i, cluster_j) for cluster_i in cluster2classMap for cluster_j in cluster2classMap if cluster_i != cluster_j):
-            key = str(cluster_i) + "_" + str(cluster_j)
-            if (cluster_i > cluster_j):
-                key = str(cluster_j) + "_" + str(cluster_i)
-
-            if (2 * interConnectivity[cluster_i] + clusterConnectivity[key]) != 0:
-                turboMQ += (2 * interConnectivity[cluster_i]) / (2 * interConnectivity[cluster_i] + clusterConnectivity[key])
+        for cluster_i in cluster2classMap:
+            intraConnectivitySum = 0
+            for cluster_j in cluster2classMap:
+                if cluster_i != cluster_j:
+                    key = str(cluster_i) + "_" + str(cluster_j)
+                    if (cluster_i > cluster_j):
+                        key = str(cluster_j) + "_" + str(cluster_i)
+                    
+                    intraConnectivitySum += clusterConnectivity[key]
+            
+            if interConnectivity[cluster_i] != 0:     
+                turboMQ += (2 * interConnectivity[cluster_i]) / (2 * interConnectivity[cluster_i] + intraConnectivitySum)
+                            
         #print(f"turboMQ: {turboMQ}")
 
         self.fitness = turboMQ
