@@ -18,11 +18,12 @@ class Individual:
         for i in range(maxClusterSize):
              genes.append(random.randint(1, maxClusterSize))
         #genes = [1, 1, 1, 2, 2, 3, 3, 3]
+        
         return genes
 
     def calc_fitness(self, graph):
         cluster2classMap = {}
-        classIndex = 1
+        classIndex = 0
         for cluster in self.genes:
             try:
                 cluster2classMap[cluster].add(classIndex)
