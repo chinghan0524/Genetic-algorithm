@@ -52,15 +52,15 @@ if __name__ == "__main__":
     
     pop_size = 100
     mutation_rate = 0.01
-    max_generation = 1
+    max_generation = 1000
     main(pop_size, mutation_rate, max_generation, "result1.txt")
 
-    pop_size = 300
-    mutation_rate = 0.01
-    max_generation = 1
-    main(pop_size, mutation_rate, max_generation, "result2.txt")
+    # pop_size = 300
+    # mutation_rate = 0.01
+    # max_generation = 1
+    # main(pop_size, mutation_rate, max_generation, "result2.txt")
     
     pop_size = 500
     mutation_rate = 0.01
-    max_generation = 1
+    max_generation = 500
     main(pop_size, mutation_rate, max_generation, "result3.txt")
