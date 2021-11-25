@@ -1,5 +1,6 @@
 from individual import Individual
 import random
+import copy
 
 
 class Population:
@@ -7,7 +8,7 @@ class Population:
         A class that describes a population of virtual individuals
     """
 
-    def __init__(self, graph, pop_size, mutation_rate, max_generation):
+    def __init__(self, graph, pop_size, mutation_rate, max_generation, AVG_BEST_FITNESSES):
         self.population = []
         self.generations = 0
         self.graph = graph
@@ -18,6 +19,9 @@ class Population:
         self.average_fitness = 0.0
         self.mating_pool = []
         self.max_generation = max_generation
+        self.AVG_BEST_FITNESSES = AVG_BEST_FITNESSES
+
+        
 
         # generate Individual
         for i in range(pop_size): 
@@ -38,6 +42,9 @@ class Population:
         print("Average fitness: " + str(self.average_fitness))
         print(f"Best fitness: {self.best_fitness}"  )
         print(f"Best individual: {self.best_ind.genes}"  )
+        self.AVG_BEST_FITNESSES.append([self.average_fitness, self.best_fitness])
+
+        return self.best_ind.genes
         
 
     def natural_selection(self):
