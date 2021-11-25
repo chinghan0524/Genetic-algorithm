@@ -1,10 +1,7 @@
 from population import Population
 import time
 
-def main():
-    pop_size = 100
-    mutation_rate = 0.01
-    max_generation = 100
+def main(pop_size, mutation_rate, max_generation, fileName):
     start_time = time.time()
     # Sample input
     # graph = {
@@ -34,7 +31,7 @@ def main():
         BEST_INDIVIDUAL = pop.print_population_status()
 
     # Output results
-    f = open("results.txt", "w")
+    f = open(fileName, "w")
     f.write("=== Setting ===\n")
     f.write("pop_size: " + str(pop_size) + "\n")
     f.write("mutation_rate: " + str(mutation_rate) + "\n")
@@ -52,4 +49,18 @@ def main():
     f.close()
     
 if __name__ == "__main__":
-    main()
+    
+    pop_size = 100
+    mutation_rate = 0.01
+    max_generation = 1
+    main(pop_size, mutation_rate, max_generation, "result1.txt")
+
+    pop_size = 300
+    mutation_rate = 0.01
+    max_generation = 1
+    main(pop_size, mutation_rate, max_generation, "result2.txt")
+    
+    pop_size = 500
+    mutation_rate = 0.01
+    max_generation = 1
+    main(pop_size, mutation_rate, max_generation, "result3.txt")
