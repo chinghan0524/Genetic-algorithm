@@ -1,10 +1,11 @@
 from population import Population
+import time
 
 def main():
     pop_size = 100
     mutation_rate = 0.01
     max_generation = 100
-    
+    start_time = time.time()
     # Sample input
     # graph = {
     #     0: {2},
@@ -45,6 +46,8 @@ def main():
     f.write("\n\nBest individual:\n")
     for ele in BEST_INDIVIDUAL:
         f.write(str(ele) + ", ")
+    
+    f.write("\n\nExecution time: %s seconds" % (time.time() - start_time))
     
     f.close()
     
